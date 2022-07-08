@@ -1,3 +1,3 @@
-const TestButton = () => {};
+import { Button } from './stories/Button';
 
-export { TestButton };
+export { Button };
