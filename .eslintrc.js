@@ -4,7 +4,7 @@ module.exports = {
     es2021: true,
     jest: true
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
+  extends: ['plugin:react/recommended', 'airbnb', 'prettier', 'plugin:storybook/recommended'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -14,7 +14,9 @@ module.exports = {
     sourceType: 'module'
   },
   settings: {
-    react: { version: 'detect' },
+    react: {
+      version: 'detect'
+    },
     'import/resolver': {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts']
@@ -31,18 +33,27 @@ module.exports = {
     */
     'import/no-extraneous-dependencies': [
       'error',
-      { devDependencies: ['webpack/**/*.js', '**/*.test.tsx', '**/*.test.ts', 'rollup.config.js', '**/*.stories.tsx'] }
+      {
+        devDependencies: ['webpack/**/*.js', '**/*.test.tsx', '**/*.test.ts', 'rollup.config.js', '**/*.stories.tsx']
+      }
     ],
     // we dont want to necessarily always have default export.
     'import/prefer-default-export': 'off',
     // https://reactjs.org/docs/hooks-rules.html#eslint-plugin
-    'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
-    'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
+    'react-hooks/rules-of-hooks': 'error',
+    // Checks rules of Hooks
+    'react-hooks/exhaustive-deps': 'warn',
+    // Checks effect dependencies
     // note you must disable the base rule as it can report incorrect errors. (https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md#how-to-use)
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
     // allow jsx in tsx. (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md)
-    'react/jsx-filename-extension': ['warn', { extensions: ['.tsx'] }],
+    'react/jsx-filename-extension': [
+      'warn',
+      {
+        extensions: ['.tsx']
+      }
+    ],
     // Overriding this rule because airbnb eslint rules does not support extension for typescript. (https://github.com/airbnb/javascript/blob/366bfa66380c08304101c6add46355696e90b348/packages/eslint-config-airbnb-base/rules/imports.js#L14)
     'import/extensions': [
       'error',
@@ -71,8 +82,10 @@ module.exports = {
         unnamedComponents: 'arrow-function'
       }
     ],
-    'react/prop-types': 'off', // Since we do not use prop-types
-    'react/require-default-props': 'off', // Since we do not use prop-types
+    'react/prop-types': 'off',
+    // Since we do not use prop-types
+    'react/require-default-props': 'off',
+    // Since we do not use prop-types
     'react/jsx-props-no-spreading': 'off' // Allow jsx props spread
   }
 };
