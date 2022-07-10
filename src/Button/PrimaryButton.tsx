@@ -1,5 +1,3 @@
 import { Button } from './Button';
 
-export const PrimaryButton = () => {
-  <Button title="Primary" />;
-};
+export const PrimaryButton = () => <Button title="Primary" />;
