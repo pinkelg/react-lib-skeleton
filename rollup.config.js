@@ -1,8 +1,11 @@
+import babel from '@rollup/plugin-babel';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import typescript from 'rollup-plugin-typescript2';
+import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
+import autoprefixer from 'autoprefixer';
+import { terser } from 'rollup-plugin-terser';
 
 const packageJson = require('./package.json');
 
@@ -24,9 +27,18 @@ export default {
     peerDepsExternal(),
     resolve(),
     commonjs(),
-    typescript({ tsconfig: './tsconfig.json' }),
+    typescript(),
+    babel({
+      exclude: 'node_modules/**',
+      babelHelpers: 'bundled'
+    }),
+    process.env.NODE_ENV === 'production' && terser(),
     postcss({
-      extensions: ['.css']
+      plugins: [autoprefixer()],
+      inject: false,
+      extract: true,
+      sourceMap: process.env.NODE_ENV === 'production' ? false : 'inline',
+      minimize: process.env.NODE_ENV === 'production'
     })
   ]
 };
