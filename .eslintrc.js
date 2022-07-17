@@ -49,9 +49,9 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': ['error'],
     // allow jsx in tsx. (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md)
     'react/jsx-filename-extension': [
-      'warn',
+      1,
       {
-        extensions: ['.tsx']
+        extensions: ['.tsx', 'js']
       }
     ],
     // Overriding this rule because airbnb eslint rules does not support extension for typescript. (https://github.com/airbnb/javascript/blob/366bfa66380c08304101c6add46355696e90b348/packages/eslint-config-airbnb-base/rules/imports.js#L14)
@@ -87,5 +87,14 @@ module.exports = {
     'react/require-default-props': 'off',
     // Since we do not use prop-types
     'react/jsx-props-no-spreading': 'off' // Allow jsx props spread
-  }
+  },
+  overrides: [
+    {
+      // https://github.com/typescript-eslint/typescript-eslint/blob/main/docs/linting/TROUBLESHOOTING.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        'no-undef': 'off'
+      }
+    }
+  ]
 };
